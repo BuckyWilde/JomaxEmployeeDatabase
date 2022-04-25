@@ -78,16 +78,16 @@
             // 
             this.txtDateInitial.Location = new System.Drawing.Point(12, 202);
             this.txtDateInitial.Name = "txtDateInitial";
+            this.txtDateInitial.PlaceholderText = "mm/dd/yyyy";
             this.txtDateInitial.Size = new System.Drawing.Size(134, 23);
-            this.txtDateInitial.TabIndex = 1;
-            this.txtDateInitial.Text = "mm-dd-yyyy";
+            this.txtDateInitial.TabIndex = 4;
             this.txtDateInitial.TextChanged += new System.EventHandler(this.control_TextChanged);
             // 
             // monthCalendar1
             // 
             this.monthCalendar1.Location = new System.Drawing.Point(12, 28);
             this.monthCalendar1.Name = "monthCalendar1";
-            this.monthCalendar1.TabIndex = 0;
+            this.monthCalendar1.TabIndex = 3;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
             // 
             // groupBox2
@@ -108,7 +108,7 @@
             this.chkDoesExpire.Location = new System.Drawing.Point(152, 204);
             this.chkDoesExpire.Name = "chkDoesExpire";
             this.chkDoesExpire.Size = new System.Drawing.Size(81, 19);
-            this.chkDoesExpire.TabIndex = 7;
+            this.chkDoesExpire.TabIndex = 5;
             this.chkDoesExpire.Text = "Has Expiry";
             this.chkDoesExpire.UseVisualStyleBackColor = true;
             this.chkDoesExpire.CheckedChanged += new System.EventHandler(this.chkDoesExpire_CheckedChanged);
@@ -118,9 +118,9 @@
             this.txtDateExpires.Enabled = false;
             this.txtDateExpires.Location = new System.Drawing.Point(12, 202);
             this.txtDateExpires.Name = "txtDateExpires";
+            this.txtDateExpires.PlaceholderText = "mm/dd/yyyy";
             this.txtDateExpires.Size = new System.Drawing.Size(134, 23);
-            this.txtDateExpires.TabIndex = 6;
-            this.txtDateExpires.Text = "mm-dd-yyyy";
+            this.txtDateExpires.TabIndex = 7;
             this.txtDateExpires.TextChanged += new System.EventHandler(this.control_TextChanged);
             // 
             // monthCalendar2
@@ -128,7 +128,7 @@
             this.monthCalendar2.Enabled = false;
             this.monthCalendar2.Location = new System.Drawing.Point(12, 28);
             this.monthCalendar2.Name = "monthCalendar2";
-            this.monthCalendar2.TabIndex = 0;
+            this.monthCalendar2.TabIndex = 6;
             this.monthCalendar2.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar2_DateChanged);
             // 
             // rtxtCertComment
@@ -136,7 +136,7 @@
             this.rtxtCertComment.Location = new System.Drawing.Point(114, 63);
             this.rtxtCertComment.Name = "rtxtCertComment";
             this.rtxtCertComment.Size = new System.Drawing.Size(408, 73);
-            this.rtxtCertComment.TabIndex = 4;
+            this.rtxtCertComment.TabIndex = 2;
             this.rtxtCertComment.Text = "";
             this.rtxtCertComment.TextChanged += new System.EventHandler(this.control_TextChanged);
             // 
@@ -145,7 +145,7 @@
             this.txtCertName.Location = new System.Drawing.Point(114, 31);
             this.txtCertName.Name = "txtCertName";
             this.txtCertName.Size = new System.Drawing.Size(182, 23);
-            this.txtCertName.TabIndex = 5;
+            this.txtCertName.TabIndex = 1;
             this.txtCertName.TextChanged += new System.EventHandler(this.control_TextChanged);
             // 
             // btnAdd
@@ -154,7 +154,7 @@
             this.btnAdd.Location = new System.Drawing.Point(187, 414);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 6;
+            this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -164,7 +164,7 @@
             this.btnCancel.Location = new System.Drawing.Point(279, 414);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

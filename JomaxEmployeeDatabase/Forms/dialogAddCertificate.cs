@@ -1,29 +1,52 @@
-﻿using JomaxEmployeeDatabase.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using JomaxEmployeeDatabase.Helpers;
+using JomaxEmployeeDatabase.Models;
 
 namespace JomaxEmployeeDatabase
 {
-    public partial class dialogAddCertificate : Form
+    public partial class dialogAddCertificate : BindableFormBase
     {
-        public Certificate certificate { get; set; }
+        private Certificate certificate;
+
+        public Certificate Certificate
+        {
+            get => certificate;
+            set
+            {
+                if (value != this.certificate)
+                {
+                    this.certificate = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
         private int employeeID { get; set; }
 
-        public dialogAddCertificate()
+        public dialogAddCertificate(Certificate cert)
         {
             InitializeComponent();
+
+            certificate = Certificate.CreateCertificate();
+
+            if (cert != null)
+            {
+                certificate = cert;
+                btnAdd.Text = "Update";
+            }
         }
 
         private void dialogAddCertificate_Load(object sender, EventArgs e)
         {
+            // Create the bindings to the Certificate object
+            txtCertName.DataBindings.Add("Text", Certificate, "Description", false, DataSourceUpdateMode.OnPropertyChanged);
+            rtxtCertComment.DataBindings.Add("Text", Certificate, "Comments", true, DataSourceUpdateMode.OnPropertyChanged);
+            txtDateInitial.DataBindings.Add("Text", Certificate, "DateInitial", false, DataSourceUpdateMode.OnPropertyChanged);
+            if (Certificate.DateExpires != null)
+            {
+                txtDateExpires.DataBindings.Add("Text", Certificate, "DateExpires", false, DataSourceUpdateMode.OnPropertyChanged);
+            }
 
+            chkDoesExpire.DataBindings.Add("Checked", Certificate, "DoesExpire", false, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         public DialogResult Show(int employeeID)
@@ -44,7 +67,7 @@ namespace JomaxEmployeeDatabase
 
             if (calendar != null)
             {
-                txtDateInitial.Text=calendar.SelectionStart.ToString("MM-dd-yyyy");
+                txtDateInitial.Text = calendar.SelectionStart.ToString("MM/dd/yyyy");
             }
         }
 
@@ -65,11 +88,10 @@ namespace JomaxEmployeeDatabase
                 if (!chkBox.Checked)
                 {
                     monthCalendar2.SelectionStart = DateTime.Today;
-                    txtDateExpires.Text = "mm-dd-yyyy";
                     txtDateExpires.Enabled = false;
                     monthCalendar2.Enabled = false;
                 }
-            }            
+            }
         }
 
         private void monthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
@@ -78,7 +100,7 @@ namespace JomaxEmployeeDatabase
 
             if (calendar != null)
             {
-                txtDateExpires.Text = calendar.SelectionStart.ToString("MM-dd-yyyy");
+                txtDateExpires.Text = calendar.SelectionStart.ToString("MM/dd/yyyy");
             }
         }
 
@@ -87,7 +109,7 @@ namespace JomaxEmployeeDatabase
             DateTime dateInitial;
             DateTime dateExpires;
 
-            if(!String.IsNullOrWhiteSpace(txtCertName.Text)&&!string.IsNullOrWhiteSpace(rtxtCertComment.Text)&& DateTime.TryParse(txtDateInitial.Text, out dateInitial))
+            if (!String.IsNullOrWhiteSpace(txtCertName.Text) && DateTime.TryParse(txtDateInitial.Text, out dateInitial))
             {
                 if (chkDoesExpire.Checked && DateTime.TryParse(txtDateExpires.Text, out dateExpires))
                 {
@@ -106,9 +128,9 @@ namespace JomaxEmployeeDatabase
             btnAdd.Enabled = false;
 
             if (validateForm())
-            { 
+            {
                 btnAdd.Enabled = true;
-            }                                    
+            }
         }
 
         private void control_TextChanged(object sender, EventArgs e)
@@ -123,17 +145,17 @@ namespace JomaxEmployeeDatabase
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            certificate=new Certificate();
+            //certificate = Certificate.CreateCertificate();
 
-            certificate.description=txtCertName.Text;
-            certificate.comments = rtxtCertComment.Text;
-            certificate.dateInitial = DateTime.Parse(txtDateInitial.Text);
-            if (chkDoesExpire.Checked)
-            {
-                certificate.dateExpires = DateTime.Parse(txtDateExpires.Text);
-            }
-            certificate.employeeID = employeeID;
-            certificate.doesExpire = chkDoesExpire.Checked;
+            //certificate.Description=txtCertName.Text;
+            //certificate.Comments = rtxtCertComment.Text;
+            //certificate.DateInitial = DateTime.Parse(txtDateInitial.Text);
+            //if (chkDoesExpire.Checked)
+            //{
+            //    certificate.DateExpires = DateTime.Parse(txtDateExpires.Text);
+            //}
+            //certificate.EmployeeID = employeeID;
+            //certificate.DoesExpire = chkDoesExpire.Checked;
 
             this.DialogResult = DialogResult.OK;
         }

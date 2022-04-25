@@ -10,12 +10,17 @@
 
   <ItemGroup>
     <None Remove="JomaxEmployeeDatabase.db3" />
+    <None Remove="Resources\Icons\Jomax_logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="JomaxEmployeeDatabase.db3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Icons\Jomax_logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
